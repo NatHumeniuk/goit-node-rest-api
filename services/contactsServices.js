@@ -26,6 +26,7 @@ export const removeContact = async (contactId) => {
     return null;
   }
   const [result] = contacts.splice(index, 1);
+  await updateContacts(contacts);
 
   return result;
 };
