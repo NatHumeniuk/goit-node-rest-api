@@ -1,6 +1,5 @@
 import Joi from "joi";
-
-const patternPhone = /^\(\d{3}\)\s\d{3}-\d{4}$/;
+import { patternPhone } from "../contacts/contacts-constants.js";
 
 export const createContactSchema = Joi.object({
   name: Joi.string().required(),
@@ -10,6 +9,7 @@ export const createContactSchema = Joi.object({
     "string.empty": "Phone number is required",
     "any.required": "Phone number is required",
   }),
+  favorite: Joi.boolean(),
 });
 
 export const updateContactSchema = Joi.object({
@@ -21,6 +21,11 @@ export const updateContactSchema = Joi.object({
   phone: Joi.string().empty().pattern(patternPhone).messages({
     "string.pattern.base": "Phone number must be in the format: (xxx) xxx-xxxx",
   }),
+  favorite: Joi.boolean(),
 })
   .min(1)
   .messages({ "object.min": "Body must have at least one field" });
+
+export const updateStatusContactSchema = Joi.object({
+  favorite: Joi.boolean().required(),
+});
