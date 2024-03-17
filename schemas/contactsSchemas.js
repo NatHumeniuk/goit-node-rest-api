@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { patternPhone } from "../contacts/contacts-constants.js";
+import { patternPhone } from "../constants/contacts-constants.js";
 
 export const createContactSchema = Joi.object({
   name: Joi.string().required(),
