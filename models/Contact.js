@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { patternPhone } from "../contacts/contacts-constants.js";
+import { patternPhone } from "../constants/contacts-constants.js";
 import { handleSaveError, setUpdateSettings } from "./hooks.js";
 
 const contactSchema = new Schema(
@@ -21,6 +21,11 @@ const contactSchema = new Schema(
     favorite: {
       type: Boolean,
       default: false,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: true,
     },
   },
   { versionKey: false, timestamps: true }
