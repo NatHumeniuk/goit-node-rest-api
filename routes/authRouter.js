@@ -2,6 +2,8 @@ import express from "express";
 
 import {
   signup,
+  verify,
+  resendVerify,
   signin,
   getCurrent,
   signout,
@@ -10,6 +12,7 @@ import {
 } from "../controllers/authControllers.js";
 import {
   userSignupSchema,
+  userEmailSchema,
   userSigninSchema,
   updateSubscriptionSchema,
 } from "../schemas/usersSchemas.js";
@@ -26,6 +29,10 @@ authRouter.post(
   validateBody(userSignupSchema),
   signup
 );
+
+authRouter.get("/verify/:verificationToken", verify);
+
+authRouter.post("/verify", validateBody(userEmailSchema), resendVerify);
 
 authRouter.post("/login", validateBody(userSigninSchema), signin);
 

@@ -8,6 +8,10 @@ export const userSignupSchema = Joi.object({
   avatarURL: Joi.string(),
 });
 
+export const userEmailSchema = Joi.object({
+  email: Joi.string().pattern(patternEmail).required(),
+});
+
 export const userSigninSchema = Joi.object({
   email: Joi.string().pattern(patternEmail).required(),
   password: Joi.string().min(6).required(),
